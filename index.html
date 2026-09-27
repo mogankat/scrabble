@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scrabble Solver</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Scrabble Solver</h1>
+    <div id="dict-status" class="status">Loading dictionary…</div>
+  </header>
+
+  <main>
+    <section class="board-wrap">
+      <nav id="tabs" aria-label="Games"></nav>
+      <div id="board" tabindex="0" aria-label="Scrabble board"></div>
+      <p class="hint">
+        Click a square and type. Click the same square again (or press <kbd>Space</kbd>) to switch
+        direction →/↓. <kbd>Backspace</kbd> erases, arrows move. <strong>Right-click</strong> a tile
+        to mark it as a blank (worth 0).
+      </p>
+    </section>
+
+    <aside class="panel">
+      <label for="rack">Your letters <span class="muted">(use <kbd>?</kbd> for a blank)</span></label>
+      <input id="rack" maxlength="7" autocomplete="off" spellcheck="false" placeholder="AEIRST?" />
+      <div id="rack-tiles" class="rack-tiles"></div>
+
+      <div class="buttons">
+        <button id="solve" class="primary">Find best moves</button>
+        <button id="undo" title="Undo last board change">Undo</button>
+        <button id="clear">Clear board</button>
+      </div>
+
+      <div id="warnings"></div>
+      <div id="results-summary" class="muted"></div>
+      <ol id="results"></ol>
+
+      <details id="word-changes" class="dict-load" hidden>
+        <summary>Your word list changes (<span id="word-changes-count">0</span>)</summary>
+        <ul id="word-changes-list"></ul>
+      </details>
+
+      <details id="dict-picker" class="dict-load">
+        <summary>Use a different word list</summary>
+        <p class="muted">A plain text file, one word per line (e.g. TWL, SOWPODS/Collins, ENABLE).</p>
+        <input type="file" id="dict-file" accept=".txt,text/plain" />
+      </details>
+    </aside>
+  </main>
+
+  <script src="solver.js"></script>
+  <script src="dict/words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
